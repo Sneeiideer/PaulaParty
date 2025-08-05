@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bienvenido al Crustáceo Crujiente</title>
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body class="intro-body">
+
+  <div class="intro-container">
+    <h1>🍔 Bienvenido al Crustáceo Crujiente de Paula's Party 🍟</h1>
+    <p>¡El mejor lugar bajo el mar para compartir comidas del mundo!</p>
+    <button id="entrarBtn">Hacer formulario!!!!!!</button>
+  </div>
+
+  <!-- Cortinas para animación -->
+  <div class="curtain left"></div>
+  <div class="curtain right"></div>
+
+  <script>
+    const btn = document.getElementById('entrarBtn');
+    const leftCurtain = document.querySelector('.curtain.left');
+    const rightCurtain = document.querySelector('.curtain.right');
+
+    btn.addEventListener('click', () => {
+      // Mostrar cortinas (cerrar)
+      leftCurtain.style.transform = 'translateX(0)';
+      rightCurtain.style.transform = 'translateX(0)';
+
+      // Después de 1.5s redirigir a formulario.html
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1500);
+    });
+  </script>
+</body>
+</html>

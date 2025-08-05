@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulario de Comida Internacional</title>
+
+  <!-- Enlace CSS propio -->
+  <link rel="stylesheet" href="estilos.css" />
+
+  <!-- Tom Select CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet" />
+</head>
+<body>
+  <form id="comidaForm" novalidate>
+    <h1>¿Qué comida vas a traer?</h1>
+
+    <label for="nombre">Tu nombre:</label>
+    <input type="text" id="nombre" name="nombre" required autocomplete="name" />
+
+    <label for="comida">Nombre de tu Entrante/Plato principal:</label>
+    <input type="text" id="comida" name="comida" required />
+
+    <label for="paisSelect">País:</label>
+    <select name="pais" id="paisSelect" required>
+      <option value="" disabled selected>-- Selecciona un país --</option>
+      <!-- Opciones se cargarán dinámicamente -->
+    </select>
+
+    <label for="tipoSelect">Tipo de plato:</label>
+    <select name="tipo" id="tipoSelect" required>
+      <option value="" disabled selected>-- Selecciona --</option>
+      <option value="Entrante">Entrante</option>
+      <option value="Plato principal">Plato principal</option>
+    </select>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <p id="respuesta" aria-live="polite"></p>
+
+  <!-- Tom Select JS -->
+  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+  <script src="formulario.js"></script>
+</body>
+</html>
+

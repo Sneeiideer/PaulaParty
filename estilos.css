@@ -1,0 +1,87 @@
+body {
+  font-family:monospace;
+  background-image: url('fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  backdrop-filter: brightness(0.9);
+  padding: 2rem;
+  max-width: 600px;
+  margin: auto;
+}
+form {
+  background-color: rgba(255, 255, 255, 0.9); /* semitransparente */
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+form {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-top: 1.5rem;
+  color: #333;
+  font-weight: 500;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+#respuesta {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  color: #007bff;
+}
+/* Cortinas - animación */
+.curtain {
+  position: fixed;
+  top: 0;
+  width: 50%;
+  height: 100vh;
+  background: #d6336c; /* color rojo/rosado Crustáceo Crujiente */
+  z-index: 1000;
+  transition: transform 1.5s ease-in-out;
+  pointer-events: none;
+  transform: translateX(-100%); /* ocultas inicialmente */
+}
+
+.curtain.right {
+  right: 0;
+  left: auto;
+  transform: translateX(100%);
+}
+
+/* Cuando se active la animación, las cortinas se moverán a 0 (cerrar la puerta) */
