@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const respuestaEl = document.getElementById('respuesta');
   const submitBtn = form.querySelector('button[type="submit"]');
 
-  const API_URL = "https://sheetdb.io/api/v1/r2x2zjucvxssu";
+  const API_URL = "https://sheetdb.io/api/v1/28mmcbb3jcryn";
 const MAX_ENTRANTES = 4;
   const MAX_PRINCIPALES = 12;
 
