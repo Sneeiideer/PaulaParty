@@ -50,10 +50,11 @@ const MAX_ENTRANTES = 4;
 
   // Inicializar TomSelect
   const paisTS = new TomSelect(paisSelect, {
-    placeholder: '-- Selecciona un país --',
-    allowEmptyOption: true,
-    sortField: { field: 'text', direction: 'asc' }
-  });
+  placeholder: '-- Selecciona un país --',
+  allowEmptyOption: true,
+  sortField: { field: 'text', direction: 'asc' },
+  maxOptions: paises.length   // le dices “muestra todas las opciones”
+});
   const tipoTS = new TomSelect(tipoSelect, { allowEmptyOption: true });
 
   // Función para actualizar contadores desde SheetDB
