@@ -1,4 +1,4 @@
-/* Variables globales */
+/* estilos.css con dropdown ajustado */
 :root {
   --primary-color: #28a745;
   --primary-hover: #218838;
@@ -9,14 +9,12 @@
   --transition-speed: 0.3s;
 }
 
-/* Reset y box-sizing */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Layout principal */
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   background: url('fondo.jpg') center/cover no-repeat fixed;
@@ -34,7 +32,6 @@ body {
   margin: auto;
 }
 
-/* Estilos del formulario */
 .formulario {
   background: rgba(255, 255, 255, 0.9);
   padding: 2rem;
@@ -145,14 +142,9 @@ label {
   transform: translateX(0);
 }
 
-/* Ajustes para el dropdown de Tom Select */
+/* Tom Select dropdown scroll */
 .ts-dropdown-content {
-  max-height: 300px !important;
+  max-height: 60vh !important;
   overflow-y: auto !important;
-}
-
-/* Aumentar número de opciones mostradas */
-.tom-select-opts {
-  max-height: none !important;
 }
 
