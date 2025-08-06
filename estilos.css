@@ -1,4 +1,4 @@
-/* estilos.css con dropdown ajustado */
+/* estilos.css con diseño responsive */
 :root {
   --primary-color: #28a745;
   --primary-hover: #218838;
@@ -147,4 +147,45 @@ label {
   max-height: 60vh !important;
   overflow-y: auto !important;
 }
+
+/* Responsive para tablets (<=768px) */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+  .formulario {
+    padding: 1.5rem;
+  }
+  .titulo {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  .input,
+  .select,
+  .btn {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+}
+
+/* Responsive para móviles (<=480px) */
+@media (max-width: 480px) {
+  body {
+    padding: 0.5rem;
+  }
+  .formulario {
+    padding: 1rem;
+  }
+  .titulo {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .input,
+  .select,
+  .btn {
+    font-size: 0.875rem;
+    padding: 0.5rem;
+  }
+}
+
 
