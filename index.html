@@ -3,45 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Formulario interactivo para que tus amigos registren su plato y país de origen" />
   <title>Formulario de Comida Internacional</title>
 
-  <!-- Enlace CSS propio -->
+  <!-- Estilos personalizados -->
   <link rel="stylesheet" href="estilos.css" />
-
   <!-- Tom Select CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css"
+    rel="stylesheet"
+    integrity="sha384-PLACEHOLDER"
+    crossorigin="anonymous"
+  />
 </head>
 <body>
-  <form id="comidaForm" novalidate>
-    <h1>¿Qué comida vas a traer?</h1>
+  <main class="container">
+    <form id="comidaForm" novalidate class="formulario">
+      <h1 class="titulo">¿Qué comida vas a traer?</h1>
 
-    <label for="nombre">Tu nombre:</label>
-    <input type="text" id="nombre" name="nombre" required autocomplete="name" />
+      <fieldset>
+        <legend>Datos personales y del plato</legend>
 
-    <label for="comida">Nombre de tu Entrante/Plato principal:</label>
-    <input type="text" id="comida" name="comida" required />
+        <div class="form-group">
+          <label for="nombre">Tu nombre</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            required
+            placeholder="Introduce tu nombre"
+            autocomplete="name"
+            class="input"
+          />
+        </div>
 
-    <label for="paisSelect">País:</label>
-    <select name="pais" id="paisSelect" required>
-      <option value="" disabled selected>-- Selecciona un país --</option>
-      <!-- Opciones se cargarán dinámicamente -->
-    </select>
+        <div class="form-group">
+          <label for="comida">Nombre del plato</label>
+          <input
+            type="text"
+            id="comida"
+            name="comida"
+            required
+            placeholder="Por ejemplo: Paella Valenciana"
+            class="input"
+          />
+        </div>
 
-    <label for="tipoSelect">Tipo de plato:</label>
-    <select name="tipo" id="tipoSelect" required>
-      <option value="" disabled selected>-- Selecciona --</option>
-      <option value="Entrante">Entrante</option>
-      <option value="Plato principal">Plato principal</option>
-    </select>
+        <div class="form-group">
+          <label for="paisSelect">País de origen</label>
+          <select
+            name="pais"
+            id="paisSelect"
+            required
+            class="select"
+          >
+            <option value="" disabled selected>-- Selecciona un país --</option>
+            <!-- Opciones se cargarán dinámicamente -->
+          </select>
+        </div>
 
-    <button type="submit">Enviar</button>
-  </form>
+        <div class="form-group">
+          <label for="tipoSelect">Tipo de plato</label>
+          <select
+            name="tipo"
+            id="tipoSelect"
+            required
+            class="select"
+          >
+            <option value="" disabled selected>-- Selecciona --</option>
+            <option value="Entrante">Entrante</option>
+            <option value="Comida Principal">Plato principal</option>
+          </select>
+        </div>
+      </fieldset>
 
-  <p id="respuesta" aria-live="polite"></p>
+      <div class="acciones">
+        <button type="submit" class="btn">Enviar</button>
+      </div>
+
+      <p id="respuesta" aria-live="polite" class="mensaje"></p>
+    </form>
+  </main>
 
   <!-- Tom Select JS -->
-  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"
+    integrity="sha384-PLACEHOLDER"
+    crossorigin="anonymous"
+  ></script>
+  <!-- Script de control -->
   <script src="formulario.js"></script>
 </body>
 </html>
+
 
