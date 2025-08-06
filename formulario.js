@@ -1,4 +1,4 @@
-// formulario.js actualizado con lista completa de países en español y depuración
+// formulario.js actualizado: populate <select> antes de instanciar TomSelect
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("comidaForm");
@@ -8,14 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitBtn = form.querySelector('button[type="submit"]');
 
   const API_URL = "https://script.google.com/macros/s/AKfycbwKL_3oi_t8Frk88EczoF7tccX0pcoc0-r_TBg4dwkKiFEosrDVyGbALPth5CPDM3Cm/exec";
-
-  // Inicializar TomSelect para países y tipos
-  const paisTS = new TomSelect(paisSelect, {
-    placeholder: '-- Selecciona un país --',
-    allowEmptyOption: true,
-    sortField: { field: 'text', direction: 'asc' }
-  });
-  const tipoTS = new TomSelect(tipoSelect, { allowEmptyOption: true });
 
   // Lista completa de países del mundo (nombres en español)
   const paises = [
@@ -46,9 +38,21 @@ document.addEventListener("DOMContentLoaded", () => {
     "Uzbekistán", "Vanuatu", "Vaticano", "Venezuela", "Vietnam", "Yemen", "Yibuti", "Zambia", "Zimbabue"
   ];
 
-  // Agregar opciones de países en TomSelect
-  paisTS.addOptions(paises.map(p => ({ value: p, text: p })));
-  paisTS.refreshOptions(false);
+  // Poblar el <select> antes de instanciar TomSelect
+  paises.forEach(pais => {
+    const option = document.createElement('option');
+    option.value = pais;
+    option.textContent = pais;
+    paisSelect.appendChild(option);
+  });
+
+  // Instancias de TomSelect ya con opciones en el DOM
+  const paisTS = new TomSelect(paisSelect, {
+    placeholder: '-- Selecciona un país --',
+    allowEmptyOption: true,
+    sortField: { field: 'text', direction: 'asc' }
+  });
+  const tipoTS = new TomSelect(tipoSelect, { allowEmptyOption: true });
 
   // Función para actualizar contadores
   async function actualizarContadores() {
@@ -129,6 +133,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Primera carga de contadores
+  // Carga inicial de contadores
   actualizarContadores();
 });
