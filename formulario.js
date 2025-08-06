@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const respuestaEl = document.getElementById("respuesta");
   const submitBtn = form.querySelector('button[type="submit"]');
 
-  const API_URL = "https://script.google.com/macros/s/AKfycbwKL_3oi_t8Frk88EczoF7tccX0pcoc0-r_TBg4dwkKiFEosrDVyGbALPth5CPDM3Cm/exec";
+  const API_URL = "https://script.google.com/macros/s/AKfycbz53Gp3tkkLdHDeWd0UKn8Jpep2ELdl0r5HHOGTkpXIVoT1D8mzy7FYhv-N1VF-VtPW/exec";
 
   // Lista completa de países del mundo (nombres en español)
   const paises = [
