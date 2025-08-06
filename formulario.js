@@ -1,4 +1,4 @@
-// formulario.js actualizado: populate <select> antes de instanciar TomSelect
+// formulario.js actualizado: evita repetir países seleccionados
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('comidaForm');
@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const respuestaEl = document.getElementById('respuesta');
   const submitBtn = form.querySelector('button[type="submit"]');
 
-  const API_URL = "https://sheetdb.io/api/v1/28mmcbb3jcryn";
-const MAX_ENTRANTES = 4;
+  const API_URL = 'https://sheetdb.io/api/v1/28mmcbb3jcryn';
+  const MAX_ENTRANTES = 4;
   const MAX_PRINCIPALES = 12;
 
   // Lista completa de países en español
@@ -40,7 +40,7 @@ const MAX_ENTRANTES = 4;
     "Uzbekistán","Vanuatu","Vaticano","Venezuela","Vietnam","Yemen","Yibuti","Zambia","Zimbabue"
   ];
 
-  // Rellenar el <select> de países
+   // Rellenar el <select> de países antes de instanciar TomSelect
   paises.forEach(p => {
     const opt = document.createElement('option');
     opt.value = p;
@@ -50,22 +50,31 @@ const MAX_ENTRANTES = 4;
 
   // Inicializar TomSelect
   const paisTS = new TomSelect(paisSelect, {
-  placeholder: '-- Selecciona un país --',
-  allowEmptyOption: true,
-  sortField: { field: 'text', direction: 'asc' },
-  maxOptions: paises.length   // le dices “muestra todas las opciones”
-});
+    placeholder: '-- Selecciona un país --',
+    allowEmptyOption: true,
+    sortField: { field: 'text', direction: 'asc' },
+    maxOptions: paises.length
+  });
+
   const tipoTS = new TomSelect(tipoSelect, { allowEmptyOption: true });
 
-  // Función para actualizar contadores desde SheetDB
+  // Actualiza contadores y elimina países ya usados
   async function actualizarContadores() {
     try {
       const res = await fetch(API_URL);
       const registros = await res.json();
+
+      // Eliminar del selector los países ya registrados
+      registros.forEach(r => {
+        paisTS.removeOption(r.pais);
+      });
+
+      // Contar tipos
       const tipos = registros.map(r => r.tipo);
       const entrantes = tipos.filter(t => t === 'Entrante').length;
       const principales = tipos.filter(t => t === 'Comida Principal').length;
 
+      // Actualizar opciones de tipo reflectando el conteo
       tipoTS.updateOption('Entrante', {
         text: `Entrante (${entrantes}/${MAX_ENTRANTES})`,
         value: 'Entrante',
@@ -81,14 +90,14 @@ const MAX_ENTRANTES = 4;
     }
   }
 
-  // Muestra mensajes de estado
+  // Mostrar mensajes de estado
   function mostrarRespuesta(texto, tipo = 'info') {
     respuestaEl.textContent = texto;
     respuestaEl.classList.toggle('success', tipo === 'success');
     respuestaEl.classList.toggle('error', tipo === 'error');
   }
 
-  // Envío del formulario
+  // Manejo del envío del formulario
   form.addEventListener('submit', async e => {
     e.preventDefault();
 
@@ -101,12 +110,12 @@ const MAX_ENTRANTES = 4;
       }
     };
 
-    // Validación
+    // Validación de campos
     if (Object.values(entry.data).some(v => !v)) {
       return mostrarRespuesta('Por favor, completa todos los campos.', 'error');
     }
 
-    // Estado de envío
+    // Deshabilitar botón durante envío
     submitBtn.disabled = true;
     submitBtn.classList.add('loading');
     mostrarRespuesta('');
@@ -117,11 +126,13 @@ const MAX_ENTRANTES = 4;
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(entry)
       });
-      await res.json(); // respuesta de SheetDB
+      await res.json(); // Esperar respuesta de SheetDB
+
+      // Eliminar el país recién enviado para que no aparezca nuevamente
+      paisTS.removeOption(entry.data.pais);
 
       mostrarRespuesta(`¡Gracias, ${entry.data.nombre}! Se registró tu comida.`, 'success');
       form.reset();
-      paisTS.clear();
       tipoTS.clear();
       await actualizarContadores();
     } catch (err) {
@@ -133,6 +144,7 @@ const MAX_ENTRANTES = 4;
     }
   });
 
-  // Carga inicial
+  // Primera carga de contadores y limpieza de opciones
   actualizarContadores();
 });
+
